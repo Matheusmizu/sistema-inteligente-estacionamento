@@ -13,4 +13,6 @@ public class AppDbContext : DbContext
     public DbSet<Setor> Setores { get; set; }
 
     public DbSet<Vaga> Vagas { get; set; }
+
+    public DbSet<Reserva> Reservas { get; set; }
 }

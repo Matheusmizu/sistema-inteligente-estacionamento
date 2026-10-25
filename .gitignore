@@ -482,3 +482,14 @@ $RECYCLE.BIN/
 
 # Vim temporary swap files
 *.swp
+
+# Frontend - dependências e builds
+frontend/node_modules/
+frontend/dist/
+frontend/.output/
+frontend/.tanstack/
+
+# Configurações locais e segredos
+.env.*
+!.env.example
+appsettings.Development.json

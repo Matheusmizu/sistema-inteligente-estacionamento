@@ -10,5 +10,5 @@ public class Vaga
 
     public int SetorId { get; set; }
 
-    public Setor Setor { get; set; } = null!;
+    public Setor? Setor { get; set; }
 }
