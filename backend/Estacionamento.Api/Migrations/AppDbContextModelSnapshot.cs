@@ -83,12 +83,18 @@ namespace Estacionamento.Api.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("OcupadaPorSensor")
+                        .HasColumnType("bit");
+
                     b.Property<int>("SetorId")
                         .HasColumnType("int");
 
                     b.Property<string>("Status")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UltimaAtualizacaoSensor")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 

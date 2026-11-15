@@ -72,5 +72,35 @@ public class VagasController : ControllerBase
             .Where(v => v.Status == "Livre")
             .ToListAsync();
     }
+    
+    [HttpPost("{id}/sensor")]
+    public async Task<IActionResult> AtualizarSensor(
+        int id,
+        [FromBody] AtualizacaoSensorDto dados)
+    {
+        var vaga = await _context.Vagas.FindAsync(id);
+
+        if (vaga == null)
+        {
+            return NotFound(new
+            {
+                mensagem = "Vaga não encontrada."
+            });
+        }
+
+        vaga.OcupadaPorSensor = dados.Ocupada;
+        vaga.UltimaAtualizacaoSensor = DateTime.UtcNow;
+
+        await _context.SaveChangesAsync();
+
+        return Ok(new
+        {
+            mensagem = "Sensor atualizado com sucesso.",
+            vaga = vaga.Codigo,
+            ocupada = vaga.OcupadaPorSensor,
+            ultimaAtualizacao = vaga.UltimaAtualizacaoSensor
+        });
+    }
+
 
 }

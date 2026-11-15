@@ -221,8 +221,10 @@ const valorEstimado = horas > 0
             </p>
             <p className="text-3xl font-bold text-green-600">
               {vagasPainel.filter(
-                (v) => v.status?.toLowerCase() === "livre"
-              ).length}
+  (v) =>
+    v.status?.toLowerCase() === "livre" &&
+    !v.ocupadaPorSensor
+).length}
             </p>
           </CardContent>
         </Card>
@@ -234,7 +236,9 @@ const valorEstimado = horas > 0
             </p>
             <p className="text-3xl font-bold text-destructive">
               {vagasPainel.filter(
-                (v) => v.status?.toLowerCase() !== "livre"
+                (v) => v.status?.toLowerCase() === "ocupada" ||
+                v.status?.toLowerCase() === "indisponível" ||
+                v.ocupadaPorSensor == true
               ).length}
             </p>
           </CardContent>
@@ -248,7 +252,9 @@ const valorEstimado = horas > 0
           );
 
           const livres = vagasSetor.filter(
-            (v) => v.status?.toLowerCase() === "livre"
+            (v) =>
+              v.status?.toLowerCase() === "livre" &&
+              !v.ocupadaPorSensor
           ).length;
 
           return (

@@ -6,6 +6,8 @@ export type Vaga = {
   id: number;
   codigo: string;
   status?: string | undefined;
+  ocupadaPorSensor?: boolean | undefined;
+  ultimaAtualizacaoSensor?: string | null | undefined;
   setorId?: number | undefined;
   setorNome?: string | undefined;
   valorHora?: number | undefined;
@@ -75,6 +77,8 @@ export const mapVaga = (v: any): Vaga => ({
   id: Number(pick(v, "id", "vagaId")),
   codigo: String(pick(v, "codigo", "numero", "identificacao", "nome") ?? pick(v, "id", "vagaId")),
   status: String(pick(v, "status", "situacao") ?? ""),
+  ocupadaPorSensor: Boolean(pick(v, "ocupadaPorSensor")),
+  ultimaAtualizacaoSensor: pick(v, "ultimaAtualizacaoSensor") ?? null,
   setorId: num(pick(v, "setorId") ?? v?.setor?.id),
   setorNome: pick(v, "setorNome") ?? v?.setor?.nome,
   valorHora: num(pick(v, "valorHora", "precoHora") ?? v?.setor?.valorHora),
